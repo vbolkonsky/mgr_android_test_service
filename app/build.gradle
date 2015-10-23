@@ -1,4 +1,9 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'me.tatarka.retrolambda'
+
+def versionCodeValue = 1
+def versionNameValue = "0.0.0.1"
 
 android {
     compileSdkVersion 23
@@ -8,14 +13,74 @@ android {
         applicationId "com.mgrmobi.testservice"
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        versionCode versionCodeValue
+        versionName versionNameValue
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            zipAlignEnabled true
+            buildConfigField "String", "REST_API_ENDPOINT", "\"http://server-test.com\""
+
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    def file = output.outputFile
+                    def fileName = "Interprefy-DEBUG-" + versionNameValue + "-code-" + versionCodeValue + ".apk"
+                    output.outputFile = new File(file.parent, file.name.replace("app-debug.apk", fileName))
+                }
+            }
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    retrolambda {
+        jdk System.getenv("JAVA8_HOME")
+        oldJdk System.getenv("JAVA7_HOME")
+        javaVersion JavaVersion.VERSION_1_7
+        defaultMethods false
+        jvmArgs '-noverify'
+        incremental true
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/notice'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/license'
+        exclude 'META-INF/README'
+        exclude 'META-INF/readme'
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+        exclude '.readme'
+
+    }
+    lintOptions {
+        enable 'BackButton'
+        enable 'GradleDynamicVersion'
+        enable 'NewerVersionAvailable'
+
+        disable 'MissingTranslation'
+        disable 'InvalidPackage'
+        disable 'ExtraTranslation'
+    }
+    dexOptions {
+        incremental false
+        preDexLibraries = false
+        javaMaxHeapSize "4g"
     }
 
 
@@ -27,6 +92,21 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.0'
     compile 'com.android.support:support-annotations:23.1.0'
     compile 'com.android.support:design:23.1.0'
+
+    //Dagger
+    compile 'com.google.dagger:dagger:2.0'
+    apt 'com.google.dagger:dagger-compiler:2.0'
+    compile 'javax.annotation:jsr250-api:1.0'
+
+    compile 'com.jakewharton:butterknife:7.0.1'
+
+    compile 'org.apache.commons:commons-lang3:3.1'
+
+    compile 'io.reactivex:rxjava-async-util:0.21.0'
+    compile 'io.reactivex:rxandroid:0.25.0'
+
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
+    compile 'com.squareup.okhttp:okhttp-urlconnection:2.3.0'
 
     //Test
     // required if you want to use Mockito for unit tests
