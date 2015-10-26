@@ -3,4 +3,6 @@
     <item name="ic_menu_home" type="drawable">@drawable/ic_action_home</item>
     <item name="ic_menu_dashboard" type="drawable">@drawable/ic_device_storage</item>
     <item name="ic_menu_settings" type="drawable">@drawable/ic_action_settings</item>
+    <item name="ic_menu_share" type="drawable">@drawable/ic_social_share</item>
+    <item name="ic_menu_send" type="drawable">@drawable/ic_content_send</item>
 </resources>

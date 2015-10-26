@@ -15,16 +15,19 @@ import butterknife.ButterKnife;
  */
 public abstract class BaseActivity extends AppCompatActivity implements CommonActivity {
 
-    protected Logger logger;
+    protected final Logger logger;
 
     @LayoutRes
     protected abstract int getResourceLayout();
+
+    public BaseActivity() {
+        logger = LoggerFactory.getLogger(this.getClass());
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getResourceLayout());
-        logger = LoggerFactory.getLogger(this.getClass());
         ButterKnife.bind(this);
     }
 

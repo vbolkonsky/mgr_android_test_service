@@ -17,7 +17,7 @@ import butterknife.Bind;
  * @author Valentin S. Bolkonsky.
  *         Proud to Code for Magora Systems/magora-systems.com/magora-systems.ru
  */
-public abstract class BaseDrawerActivity extends BaseActivity
+public abstract class BaseDrawerActivity extends DaggerActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Bind(R.id.drawer_layout)

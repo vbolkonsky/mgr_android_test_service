@@ -1,6 +1,8 @@
 package com.mgrmobi.testservice.application.dagger;
 
 import com.mgrmobi.testservice.application.TestServiceApplication;
+import com.mgrmobi.testservice.ui.activity.base.DaggerActivity;
+import com.mgrmobi.testservice.ui.fragment.base.DaggerFragment;
 
 import javax.inject.Singleton;
 
@@ -17,4 +19,8 @@ import dagger.Component;
 public interface DApplicationComponent {
 
     void inject(TestServiceApplication application);
+
+    void inject(DaggerFragment f);
+
+    void inject(DaggerActivity a);
 }
