@@ -1,11 +1,14 @@
 package com.mgrmobi.testservice;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.MediumTest;
 
 import com.mgrmobi.testservice.ui.activity.ActivityMain;
+import com.mgrmobi.testservice.ui.fragment.FragmentRegister;
 import com.robotium.solo.Solo;
 
 /**
@@ -50,7 +53,20 @@ public class ActivityMainTest extends ActivityInstrumentationTestCase2<ActivityM
     public void testNavigationDrawable() {
         final DrawerLayout drawerLayout = (DrawerLayout)activityMain.findViewById(R.id.drawer_layout);
         assertNotNull("DrawerLayout is not null", drawerLayout);
-        solo.waitForCondition(() -> drawerLayout.isDrawerOpen(GravityCompat.START), 5000);
+        solo.waitForCondition(() -> drawerLayout.isDrawerOpen(GravityCompat.START), 100);
+    }
 
+    @MediumTest
+    public void testRegisterFragment(){
+        FragmentRegister fragment = new FragmentRegister();
+        FragmentManager fragmentManager = activityMain.getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.fragment_content, fragment, null);
+        fragmentTransaction.commit();
+
+        getActivity().runOnUiThread(() -> getActivity().getFragmentManager().executePendingTransactions());
+
+        getInstrumentation().waitForIdleSync();
+        solo.waitForActivity(activityMain.getClass(), 5000);
     }
 }

@@ -17,4 +17,10 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="RegisterEditText" parent="Material.Widget.EditText">
+        <item name="android:textAppearance">?android:textAppearanceMedium</item>
+        <item name="et_labelTextColor">@color/colorPrimary</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
 </resources>

@@ -8,10 +8,15 @@ import android.view.View;
 
 import com.mgrmobi.testservice.R;
 import com.mgrmobi.testservice.ui.activity.base.BaseDrawerActivity;
+import com.mgrmobi.testservice.ui.activity.base.ContainerRegister;
+import com.mgrmobi.testservice.ui.fragment.FragmentsNavigation;
 
 import butterknife.OnClick;
 
-public class ActivityMain extends BaseDrawerActivity {
+public class ActivityMain extends BaseDrawerActivity implements ContainerRegister {
+
+    private FragmentsNavigation.FragmentCode pendingFragmentCode;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +63,19 @@ public class ActivityMain extends BaseDrawerActivity {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         switch (id) {
+            case R.id.nav_register:
+                pendingFragmentCode = FragmentsNavigation.FragmentCode.FRAGMENT_REGISTER;
             default:
         }
         return super.onNavigationItemSelected(item);
+    }
+
+    @Override
+    protected void onEventDrawerClosed() {
+        super.onEventDrawerClosed();
+        if (pendingFragmentCode != null) {
+            replaceFragment(FragmentsNavigation.makeFragment(pendingFragmentCode));
+            pendingFragmentCode = null;
+        }
     }
 }

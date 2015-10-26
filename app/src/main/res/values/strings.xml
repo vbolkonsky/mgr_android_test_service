@@ -11,4 +11,6 @@
     <string name="action_register">Register</string>
     <string name="action_dashboard">Dashboard</string>
     <string name="action_home">Home</string>
+
+    <string name="register_full_name">Full Name</string>
 </resources>

@@ -92,6 +92,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.0'
     compile 'com.android.support:support-annotations:23.1.0'
     compile 'com.android.support:design:23.1.0'
+    compile 'com.github.rey5137:material:1.2.1'
 
     //Dagger
     compile 'com.google.dagger:dagger:2.0'
