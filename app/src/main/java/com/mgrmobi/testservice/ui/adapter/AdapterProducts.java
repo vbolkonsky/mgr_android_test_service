@@ -16,6 +16,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 /**
  * @author Valentin S. Bolkonsky.
  *         Proud to Code for Magora Systems/magora-systems.com/magora-systems.ru
@@ -52,12 +55,24 @@ public class AdapterProducts extends BaseAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.adapter_item_product, parent, false);
         }
-        ((TextView) convertView.findViewById(R.id.txt_display)).setText(getItem(position).getDisplay());
+        final ViewHolder holder = new ViewHolder(convertView);
+        holder.txtDisplay.setText(getItem(position).getDisplay());
         return convertView;
     }
 
     public void addAll(final List<ProductModel> models) {
         this.models.addAll(models);
         notifyDataSetChanged();
+    }
+
+    static class ViewHolder {
+
+        @Bind(R.id.txt_display)
+        TextView txtDisplay;
+
+        public ViewHolder(final View view) {
+            ButterKnife.bind(this, view);
+        }
+
     }
 }
