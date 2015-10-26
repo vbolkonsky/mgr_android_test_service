@@ -74,6 +74,7 @@ public class ActivityMain extends BaseDrawerActivity implements ContainerRegiste
     protected void onEventDrawerClosed() {
         super.onEventDrawerClosed();
         if (pendingFragmentCode != null) {
+            logger.debug("starting replace fragment on {}", pendingFragmentCode);
             replaceFragment(FragmentsNavigation.makeFragment(pendingFragmentCode));
             pendingFragmentCode = null;
         }
