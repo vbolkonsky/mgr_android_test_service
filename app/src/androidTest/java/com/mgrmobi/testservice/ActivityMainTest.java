@@ -5,14 +5,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.MediumTest;
 
-import com.mgrmobi.testservice.ui.ActivityMain;
-import com.robotium.solo.Condition;
+import com.mgrmobi.testservice.ui.activity.ActivityMain;
 import com.robotium.solo.Solo;
 
 /**
  * @author Valentin S. Bolkonsky.
  *         Proud to Code for Magora Systems/magora-systems.com/magora-systems.ru
- * @see com.mgrmobi.testservice.ui.ActivityMain
+ * @see com.mgrmobi.testservice.ui.activity.ActivityMain
  */
 
 /**
@@ -51,12 +50,7 @@ public class ActivityMainTest extends ActivityInstrumentationTestCase2<ActivityM
     public void testNavigationDrawable() {
         final DrawerLayout drawerLayout = (DrawerLayout)activityMain.findViewById(R.id.drawer_layout);
         assertNotNull("DrawerLayout is not null", drawerLayout);
-        solo.waitForCondition(new Condition() {
-            @Override
-            public boolean isSatisfied() {
-                return drawerLayout.isDrawerOpen(GravityCompat.START);
-            }
-        }, 5000);
+        solo.waitForCondition(() -> drawerLayout.isDrawerOpen(GravityCompat.START), 5000);
 
     }
 }
