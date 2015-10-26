@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.mgrmobi.testservice.R;
+import com.mgrmobi.testservice.utils.SystemsUtils;
 
 import butterknife.Bind;
 
@@ -61,6 +62,7 @@ public abstract class BaseDrawerActivity extends DaggerActivity
 
     protected void onEventDrawerOpened() {
         logger.debug("onDrawerOpened");
+        SystemsUtils.hideSoftKeyboard(this);
     }
 
     protected void onEventDrawerClosed() {
