@@ -3,6 +3,7 @@ package com.mgrmobi.testservice.ui.fragment.base;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
 
 import com.mgrmobi.testservice.application.TestServiceApplication;
 
@@ -15,14 +16,17 @@ import javax.inject.Inject;
  * @author Valentin S. Bolkonsky.
  *         Proud to Code for Magora Systems/magora-systems.com/magora-systems.ru
  */
-public abstract class DaggerFragment extends Fragment{
+public abstract class DaggerFragment extends Fragment {
 
     protected final Logger logger;
 
     @Inject
     protected TestServiceApplication application;
 
-    public DaggerFragment(){
+    @Inject
+    protected LayoutInflater inflater;
+
+    public DaggerFragment() {
         logger = LoggerFactory.getLogger(this.getClass());
     }
 

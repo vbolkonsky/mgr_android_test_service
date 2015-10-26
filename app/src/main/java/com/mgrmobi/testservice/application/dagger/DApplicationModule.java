@@ -1,6 +1,7 @@
 package com.mgrmobi.testservice.application.dagger;
 
 import android.app.Application;
+import android.view.LayoutInflater;
 
 import com.mgrmobi.testservice.R;
 import com.mgrmobi.testservice.application.TestServiceApplication;
@@ -33,7 +34,12 @@ public class DApplicationModule extends DAbstractModule {
     }
 
     @Provides
-    public String provideApplicationName(){
-        return  getContext().getString(R.string.app_name);
+    public String provideApplicationName() {
+        return getContext().getString(R.string.app_name);
+    }
+
+    @Provides
+    public LayoutInflater provideLayoutInflater() {
+        return LayoutInflater.from(getContext());
     }
 }

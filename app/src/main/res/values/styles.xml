@@ -20,6 +20,7 @@
     <style name="RegisterEditText" parent="Material.Widget.EditText">
         <item name="android:textAppearance">?android:textAppearanceMedium</item>
         <item name="et_labelTextColor">@color/colorPrimary</item>
+        <item name="et_supportTextColor">@color/colorPrimaryDark</item>
         <item name="android:singleLine">true</item>
     </style>
 
