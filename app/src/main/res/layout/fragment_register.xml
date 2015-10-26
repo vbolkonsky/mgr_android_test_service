@@ -55,5 +55,39 @@
             android:layout_marginTop="@dimen/activity_vertical_margin"
             app:spn_label="@string/register_product_label"/>
 
+        <com.rey.material.widget.EditText
+            android:id="@+id/txt_contact"
+            style="@style/RegisterEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:hint="@string/register_contact"
+            android:imeOptions="actionNext"
+            app:et_inputId="@+id/textfield_contact_et_label_input"
+            app:et_supportMode="none" />
+
+        <com.rey.material.widget.EditText
+            android:id="@+id/txt_serial"
+            style="@style/RegisterEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:hint="@string/register_product_serial"
+            android:enabled="false"
+            android:imeOptions="actionNone"
+            android:focusable="false"
+            app:et_inputId="@+id/textfield_address_et_label_input"
+            app:et_supportMode="none" />
+
+        <com.rey.material.widget.TextView
+            android:id="@+id/txt_purchase"
+            style="@style/RegisterEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:hint="@string/register_product_serial"
+            app:et_inputId="@+id/textfield_address_et_label_input"
+            app:et_supportMode="none" />
+
     </LinearLayout>
 </ScrollView>
