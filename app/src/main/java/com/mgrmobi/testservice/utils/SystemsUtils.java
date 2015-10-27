@@ -11,6 +11,10 @@ import android.view.inputmethod.InputMethodManager;
  */
 public class SystemsUtils {
 
+    private SystemsUtils(){
+
+    }
+
     public static void hideSoftKeyboard(Activity activity) {
         View view = activity.getCurrentFocus();
         if (view != null) {

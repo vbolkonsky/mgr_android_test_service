@@ -1,6 +1,7 @@
 package com.mgrmobi.testservice.application.dagger;
 
 import android.app.Application;
+import android.content.Context;
 import android.view.LayoutInflater;
 
 import com.mgrmobi.testservice.R;
@@ -26,6 +27,11 @@ public class DApplicationModule extends DAbstractModule {
     @Singleton
     public TestServiceApplication provideTestServiceApplication() {
         return (TestServiceApplication) getContext();
+    }
+
+    @Provides
+    public Context provideContext() {
+        return getContext();
     }
 
     @Provides

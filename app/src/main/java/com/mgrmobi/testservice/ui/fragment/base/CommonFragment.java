@@ -7,4 +7,6 @@ import com.mgrmobi.testservice.ui.activity.base.CommonActivity;
  *         Proud to Code for Magora Systems/magora-systems.com/magora-systems.ru
  */
 public interface CommonFragment<A extends CommonActivity> {
+
+    void apply();
 }

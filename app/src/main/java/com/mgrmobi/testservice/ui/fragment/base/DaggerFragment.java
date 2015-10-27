@@ -1,6 +1,7 @@
 package com.mgrmobi.testservice.ui.fragment.base;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -21,7 +22,7 @@ public abstract class DaggerFragment extends Fragment {
     protected final Logger logger;
 
     @Inject
-    protected TestServiceApplication application;
+    protected Context application;
 
     @Inject
     protected LayoutInflater inflater;

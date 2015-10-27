@@ -26,6 +26,9 @@ public class ActivityMain extends BaseDrawerActivity implements ContainerRegiste
 
     @OnClick(R.id.fab)
     protected void onFabClick(View view) {
+        if (currentFragment != null) {
+            currentFragment.apply();
+        }
         Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
     }

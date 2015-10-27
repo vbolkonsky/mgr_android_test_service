@@ -1,6 +1,7 @@
 package com.mgrmobi.testservice.application.dagger;
 
 import com.mgrmobi.testservice.application.TestServiceApplication;
+import com.mgrmobi.testservice.presentation.DaggerPresentationView;
 import com.mgrmobi.testservice.ui.activity.base.DaggerActivity;
 import com.mgrmobi.testservice.ui.adapter.AdapterProducts;
 import com.mgrmobi.testservice.ui.fragment.base.DaggerFragment;
@@ -26,4 +27,6 @@ public interface DApplicationComponent {
     void inject(DaggerActivity a);
 
     void inject(AdapterProducts adapter);
+
+    void inject(DaggerPresentationView p);
 }

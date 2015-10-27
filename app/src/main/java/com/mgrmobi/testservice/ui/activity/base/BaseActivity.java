@@ -29,6 +29,8 @@ public abstract class BaseActivity extends AppCompatActivity implements CommonAc
     @Bind(R.id.fragment_content)
     protected ViewGroup containerFragments;
 
+    protected BaseFragment currentFragment;
+
     public BaseActivity() {
         logger = LoggerFactory.getLogger(this.getClass());
     }
@@ -50,6 +52,11 @@ public abstract class BaseActivity extends AppCompatActivity implements CommonAc
         getFragmentManager().beginTransaction()
                 .replace(containerFragments.getId(), fragment, FragmentRegister.class.getCanonicalName())
                 .commit();
+        runOnUiThread(() -> {
+            getFragmentManager().executePendingTransactions();
+            currentFragment = fragment;
+        });
+
 
     }
 }
