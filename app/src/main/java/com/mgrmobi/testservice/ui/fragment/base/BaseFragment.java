@@ -8,8 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.mgrmobi.testservice.R;
+import com.mgrmobi.testservice.presentation.PresentationView;
 import com.mgrmobi.testservice.ui.activity.base.CommonActivity;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
@@ -24,7 +27,10 @@ public abstract class BaseFragment<A extends CommonActivity> extends DaggerFragm
     @LayoutRes
     protected abstract int getResourceLayout();
 
+    @Bind(R.id.main_container)
+    protected View viewContainer;
 
+    protected PresentationView presentationView;
 
     @Nullable
     @Override
@@ -48,6 +54,10 @@ public abstract class BaseFragment<A extends CommonActivity> extends DaggerFragm
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        if (presentationView != null) {
+            presentationView.destroy();
+            presentationView = null;
+        }
         ButterKnife.unbind(this);
     }
 

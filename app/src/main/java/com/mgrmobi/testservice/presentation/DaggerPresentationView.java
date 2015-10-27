@@ -11,7 +11,7 @@ import javax.inject.Inject;
  * @author Valentin S. Bolkonsky.
  *         Proud to Code for Magora Systems/magora-systems.com/magora-systems.ru
  */
-public abstract class DaggerPresentationView {
+public abstract class DaggerPresentationView implements PresentationView {
 
     @Inject
     protected Context application;

@@ -17,14 +17,13 @@ public abstract class AbstractPresentationView<T> extends DaggerPresentationView
     protected final Logger logger;
     protected T model;
 
-    public abstract void apply();
-
     public AbstractPresentationView(@NonNull View view) {
         super(view.getContext());
         logger = LoggerFactory.getLogger(this.getClass());
         ButterKnife.bind(this, view);
     }
 
+    @Override
     public void destroy() {
         ButterKnife.unbind(this);
     }
@@ -33,6 +32,7 @@ public abstract class AbstractPresentationView<T> extends DaggerPresentationView
         return model;
     }
 
+    @Override
     public void clear() {
         model = null;
     }

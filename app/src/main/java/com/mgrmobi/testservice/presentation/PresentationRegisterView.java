@@ -54,6 +54,7 @@ public class PresentationRegisterView extends AbstractPresentationView<Registrat
         fillControls();
     }
 
+    @Override
     public boolean validation() {
         final CharSequence name = txtName.getText();
         if (StringUtils.isBlank(name)) {

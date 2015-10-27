@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * @author Valentin S. Bolkonsky.
@@ -27,7 +28,7 @@ public class DateUtils {
         if (StringUtils.isBlank(formatted)) {
             return null;
         }
-        final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(context.getString(template));
+        final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(context.getString(template), Locale.getDefault());
         try {
             return simpleDateFormat.parse(formatted);
         } catch (ParseException e) {
@@ -36,11 +37,11 @@ public class DateUtils {
         }
     }
 
-    public static String getStringFromDate(final Context context, final Date date, final @StringRes int template){
+    public static String getStringFromDate(final Context context, final Date date, final @StringRes int template) {
         if (date == null) {
             return null;
         }
-        final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(context.getString(template));
+        final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(context.getString(template), Locale.getDefault());
         return simpleDateFormat.format(date);
     }
 }

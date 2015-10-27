@@ -21,4 +21,6 @@
     <string name="register_contact">Contact number</string>
     <string name="register_product_serial">Product serial number</string>
     <string name="register_date_purchase">Date of purchase</string>
+
+    <string name="fake_show_dialog">Show Dialog</string>
 </resources>

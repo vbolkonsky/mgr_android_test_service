@@ -1,5 +1,8 @@
 package com.mgrmobi.testservice.ui.fragment;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 import com.mgrmobi.testservice.ui.fragment.base.BaseFragment;
 
 /**
@@ -13,10 +16,12 @@ public final class FragmentsNavigation {
 
     }
 
-    public static BaseFragment makeFragment(final FragmentCode code) {
+    public static BaseFragment makeFragment(final @NonNull FragmentCode code, final @Nullable String message) {
         switch (code) {
             case FRAGMENT_REGISTER:
                 return FragmentRegister.makeFragment();
+            case FRAGMENT_FAKE:
+                return FragmentFake.makeFragment(message);
             default:
                 return null;
         }
@@ -26,7 +31,7 @@ public final class FragmentsNavigation {
     /**
      * Fragments Codes
      */
-    public enum FragmentCode{
+    public enum FragmentCode {
         FRAGMENT_REGISTER, FRAGMENT_FAKE;
     }
 

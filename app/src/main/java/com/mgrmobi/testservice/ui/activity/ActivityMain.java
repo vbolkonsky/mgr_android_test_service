@@ -8,20 +8,24 @@ import android.view.View;
 
 import com.mgrmobi.testservice.R;
 import com.mgrmobi.testservice.ui.activity.base.BaseDrawerActivity;
+import com.mgrmobi.testservice.ui.activity.base.ContainerFake;
 import com.mgrmobi.testservice.ui.activity.base.ContainerRegister;
 import com.mgrmobi.testservice.ui.fragment.FragmentsNavigation;
 
 import butterknife.OnClick;
 
-public class ActivityMain extends BaseDrawerActivity implements ContainerRegister {
+public class ActivityMain extends BaseDrawerActivity implements ContainerRegister, ContainerFake {
 
     private FragmentsNavigation.FragmentCode pendingFragmentCode;
+    private MenuItem currentMenu;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         logger.debug("ActivityMain created");
+        replaceFragment(FragmentsNavigation.makeFragment(FragmentsNavigation.FragmentCode.FRAGMENT_FAKE,
+                getString(R.string.action_home)));
     }
 
     @OnClick(R.id.fab)
@@ -65,10 +69,14 @@ public class ActivityMain extends BaseDrawerActivity implements ContainerRegiste
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        currentMenu = item;
         switch (id) {
             case R.id.nav_register:
                 pendingFragmentCode = FragmentsNavigation.FragmentCode.FRAGMENT_REGISTER;
+                break;
             default:
+                pendingFragmentCode = FragmentsNavigation.FragmentCode.FRAGMENT_FAKE;
+                break;
         }
         return super.onNavigationItemSelected(item);
     }
@@ -78,7 +86,7 @@ public class ActivityMain extends BaseDrawerActivity implements ContainerRegiste
         super.onEventDrawerClosed();
         if (pendingFragmentCode != null) {
             logger.debug("starting replace fragment on {}", pendingFragmentCode);
-            replaceFragment(FragmentsNavigation.makeFragment(pendingFragmentCode));
+            replaceFragment(FragmentsNavigation.makeFragment(pendingFragmentCode, String.valueOf(currentMenu.getTitle())));
             pendingFragmentCode = null;
         }
     }
