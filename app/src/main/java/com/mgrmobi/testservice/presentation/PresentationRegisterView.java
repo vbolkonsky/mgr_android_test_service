@@ -121,7 +121,7 @@ public class PresentationRegisterView extends AbstractPresentationView<Registrat
         Dialog dialog = new DatePickerDialog.Builder(R.style.Material_App_Dialog_DatePicker_Light)
                 .positiveAction(application.getString(android.R.string.ok))
                 .negativeAction(application.getString(android.R.string.cancel))
-                .build(application);
+                .build(contentView.getContext());
         dialog.show();
     }
 
