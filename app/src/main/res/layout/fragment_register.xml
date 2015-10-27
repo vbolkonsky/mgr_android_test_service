@@ -5,90 +5,12 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/main_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <com.rey.material.widget.EditText
-            android:id="@+id/txt_name"
-            style="@style/RegisterEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/register_full_name"
-            android:imeOptions="actionNext"
-            app:et_helper="@string/register_full_name_helper"
-            app:et_inputId="@+id/textfield_name_et_label_input"
-            app:et_supportMode="helperWithError" />
+        <include layout="@layout/layout_registration" />
+    </FrameLayout>
 
-        <com.rey.material.widget.EditText
-            android:id="@+id/txt_address"
-            style="@style/RegisterEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:hint="@string/register_address"
-            android:imeOptions="actionNext"
-            app:et_inputId="@+id/textfield_address_et_label_input"
-            app:et_supportMode="none" />
-
-        <com.rey.material.widget.EditText
-            android:id="@+id/txt_email"
-            style="@style/RegisterEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:hint="@string/register_email"
-            android:imeOptions="actionNext"
-            android:inputType="textEmailAddress"
-            app:et_helper="@string/register_email_helper"
-            app:et_inputId="@+id/textfield_email_et_label_input"
-            app:et_supportMode="helperWithError" />
-
-        <com.rey.material.widget.Spinner
-            android:id="@+id/spinner_products"
-            style="@style/DarkSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:background="@color/colorPrimary"
-            app:rd_style="@style/DarkSpinnerItem"
-            app:spn_label="@string/register_product_label" />
-
-        <com.rey.material.widget.EditText
-            android:id="@+id/txt_contact"
-            style="@style/RegisterEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:hint="@string/register_contact"
-            android:imeOptions="actionNext"
-            app:et_inputId="@+id/textfield_contact_et_label_input"
-            app:et_supportMode="none" />
-
-        <com.rey.material.widget.EditText
-            android:id="@+id/txt_serial"
-            style="@style/RegisterEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:enabled="false"
-            android:focusable="false"
-            android:hint="@string/register_product_serial"
-            android:imeOptions="actionNone"
-            app:et_inputId="@+id/textfield_serial_et_label_input"
-            app:et_supportMode="none" />
-
-        <com.rey.material.widget.TextView
-            android:id="@+id/txt_purchase"
-            style="@style/RegisterEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:background="@color/colorPrimaryHalf"
-            app:et_inputId="@+id/textfield_purchase_et_label_input"
-            app:et_supportMode="none" />
-
-    </LinearLayout>
 </ScrollView>

@@ -29,4 +29,5 @@ public interface DApplicationComponent {
     void inject(AdapterProducts adapter);
 
     void inject(DaggerPresentationView p);
+
 }

@@ -7,7 +7,6 @@ import com.mgrmobi.testservice.R;
 import com.rey.material.widget.TextView;
 
 import butterknife.Bind;
-import butterknife.OnClick;
 
 /**
  * @author Valentin S. Bolkonsky.
@@ -26,11 +25,6 @@ public class PresentationFakeView extends AbstractPresentationView<Void> {
     @Override
     public void apply() {
         logger.debug("not used here");
-    }
-
-    @OnClick(R.id.btn_show_registration)
-    protected void onShowDialog() {
-        logger.debug("onShowDialog");
     }
 
     @Override

@@ -12,6 +12,8 @@ import com.mgrmobi.testservice.ui.adapter.AdapterProducts;
 import com.mgrmobi.testservice.utils.DateUtils;
 import com.mgrmobi.testservice.utils.MiscUtils;
 import com.mgrmobi.testservice.utils.WidgetUtils;
+import com.rey.material.app.DatePickerDialog;
+import com.rey.material.app.Dialog;
 import com.rey.material.widget.EditText;
 import com.rey.material.widget.Spinner;
 
@@ -116,6 +118,11 @@ public class PresentationRegisterView extends AbstractPresentationView<Registrat
     @OnClick(R.id.txt_purchase)
     protected void onClickPurchase() {
         logger.debug("onClickPurchase");
+        Dialog dialog = new DatePickerDialog.Builder(R.style.Material_App_Dialog_DatePicker_Light)
+                .positiveAction(application.getString(android.R.string.ok))
+                .negativeAction(application.getString(android.R.string.cancel))
+                .build(application);
+        dialog.show();
     }
 
     private void fillControls() {
