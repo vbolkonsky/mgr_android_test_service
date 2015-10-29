@@ -100,7 +100,7 @@ public class TestServiceImpl extends Service implements TestService {
         final DateTime lastModifyTime = new DateTime(modifyDate.getTime());
         Months months = Months.monthsBetween(lastModifyTime, currentDate);
         logger.debug("month: " + months.getMonths());
-        if (months.getMonths() > 1) {
+        if (months.getMonths() >= 1) {
             ActivitiesNavigation.startActivityRegister(this);
             unsubscribeFromTimer();
         }
