@@ -60,6 +60,22 @@ public abstract class BaseActivity extends AppCompatActivity implements CommonAc
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        if (service != null) {
+            service.subscribeToTimer();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (service != null) {
+            service.unsubscribeFromTimer();
+        }
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         ButterKnife.unbind(this);

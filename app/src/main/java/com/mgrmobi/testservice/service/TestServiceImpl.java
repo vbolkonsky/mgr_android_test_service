@@ -8,9 +8,10 @@ import android.support.annotation.Nullable;
 
 import com.mgrmobi.testservice.application.TestServiceApplication;
 import com.mgrmobi.testservice.data.bean.PreferenceBean;
+import com.mgrmobi.testservice.ui.activity.ActivitiesNavigation;
 
 import org.joda.time.DateTime;
-import org.joda.time.Seconds;
+import org.joda.time.Months;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -61,7 +62,6 @@ public class TestServiceImpl extends Service implements TestService {
     public void onCreate() {
         super.onCreate();
         TestServiceApplication.get(this).getComponent().inject(this);
-        setPurchaseDateTime(new Date());
         subscribeToTimer();
     }
 
@@ -98,11 +98,11 @@ public class TestServiceImpl extends Service implements TestService {
         }
         final DateTime currentDate = new DateTime(new Date());
         final DateTime lastModifyTime = new DateTime(modifyDate.getTime());
-        Seconds seconds = Seconds.secondsBetween(lastModifyTime, currentDate);
-        if (seconds.getSeconds() > 30) {
-            logger.debug("onShow notification " + mills + " seconds: " + seconds.getSeconds());
-        } else {
-            logger.debug("left seconds: " + seconds.getSeconds());
+        Months months = Months.monthsBetween(lastModifyTime, currentDate);
+        logger.debug("month: " + months.getMonths());
+        if (months.getMonths() > 1) {
+            ActivitiesNavigation.startActivityRegister(this);
+            unsubscribeFromTimer();
         }
     }
 }

@@ -14,6 +14,8 @@ public class ActivitiesNavigation {
     }
 
     public static void startActivityRegister(final Context context) {
-        context.startActivity(new Intent(context, ActivityRegister.class));
+        final  Intent intent = new Intent(context, ActivityRegister.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
     }
 }
