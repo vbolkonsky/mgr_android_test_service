@@ -29,7 +29,10 @@ public class FragmentRegister extends BaseFragment<ContainerRegister> {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        presentationView = new PresentationRegisterView(viewContainer);
+        if(getView() != null) {
+            presentationView = new PresentationRegisterView(getView());
+        }
+
     }
 
     @Override

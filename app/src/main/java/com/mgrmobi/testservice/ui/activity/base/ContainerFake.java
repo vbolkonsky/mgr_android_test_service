@@ -5,4 +5,6 @@ package com.mgrmobi.testservice.ui.activity.base;
  *         Proud to Code for Magora Systems/magora-systems.com/magora-systems.ru
  */
 public interface ContainerFake extends CommonActivity {
+
+    void onShowRegister();
 }

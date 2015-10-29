@@ -1,5 +1,7 @@
 package com.mgrmobi.testservice.presentation;
 
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -14,6 +16,7 @@ import com.mgrmobi.testservice.utils.MiscUtils;
 import com.mgrmobi.testservice.utils.WidgetUtils;
 import com.rey.material.app.DatePickerDialog;
 import com.rey.material.app.Dialog;
+import com.rey.material.app.DialogFragment;
 import com.rey.material.widget.EditText;
 import com.rey.material.widget.Spinner;
 
@@ -51,7 +54,7 @@ public class PresentationRegisterView extends AbstractPresentationView<Registrat
     @Bind(R.id.txt_purchase)
     protected com.rey.material.widget.TextView txtPurchase;
 
-    public PresentationRegisterView(final View view) {
+    public PresentationRegisterView(@NonNull final View view) {
         super(view);
         fillControls();
     }
@@ -118,11 +121,26 @@ public class PresentationRegisterView extends AbstractPresentationView<Registrat
     @OnClick(R.id.txt_purchase)
     protected void onClickPurchase() {
         logger.debug("onClickPurchase");
-        Dialog dialog = new DatePickerDialog.Builder(R.style.Material_App_Dialog_DatePicker_Light)
-                .positiveAction(application.getString(android.R.string.ok))
-                .negativeAction(application.getString(android.R.string.cancel))
-                .build(contentView.getContext());
-        dialog.show();
+        Dialog.Builder builder = new DatePickerDialog.Builder(R.style.Material_App_Dialog_DatePicker_Light) {
+            @Override
+            public void onPositiveActionClicked(DialogFragment fragment) {
+                DatePickerDialog dialog = (DatePickerDialog)fragment.getDialog();
+                txtPurchase.setText(DateUtils.getStringFromDate(application, new Date(dialog.getDate()), R.string.date_template_simple));
+                super.onPositiveActionClicked(fragment);
+                dialog.dismiss();
+            }
+
+            @Override
+            public void onNegativeActionClicked(DialogFragment fragment) {
+                super.onNegativeActionClicked(fragment);
+            }
+        };
+
+        builder.positiveAction(application.getString(android.R.string.ok))
+                .negativeAction(application.getString(android.R.string.cancel));
+
+        DialogFragment fragment = DialogFragment.newInstance(builder);
+        fragment.show(((AppCompatActivity)contentView.getContext()).getSupportFragmentManager(), null);
     }
 
     private void fillControls() {

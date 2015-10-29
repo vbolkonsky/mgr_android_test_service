@@ -1,14 +1,11 @@
 package com.mgrmobi.testservice.ui.fragment;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.mgrmobi.testservice.R;
 import com.mgrmobi.testservice.presentation.PresentationFakeView;
 import com.mgrmobi.testservice.ui.activity.base.ContainerFake;
-import com.mgrmobi.testservice.ui.dialog.DialogRegister;
 import com.mgrmobi.testservice.ui.fragment.base.BaseFragment;
 
 import butterknife.OnClick;
@@ -34,19 +31,15 @@ public class FragmentFake extends BaseFragment<ContainerFake> {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        presentationView = new PresentationFakeView(viewContainer, getArguments().getString(FRAGMENT_ARG_MESSAGE));
+        if (getView() != null) {
+            presentationView = new PresentationFakeView(getView(), getArguments().getString(FRAGMENT_ARG_MESSAGE));
+        }
     }
 
     @OnClick(R.id.btn_show_registration)
     protected void onShowDialog() {
         logger.debug("onShowDialog");
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        Fragment prev = getFragmentManager().findFragmentByTag("DialogRegister");
-        if(prev != null){
-            ft.remove(prev);
-        }
-        DialogRegister dialogRegister = new DialogRegister();
-        dialogRegister.show(ft, "DialogRegister");
+        activity.onShowRegister();
     }
 
     @Override

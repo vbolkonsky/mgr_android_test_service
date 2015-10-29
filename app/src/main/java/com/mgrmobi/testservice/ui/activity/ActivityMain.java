@@ -38,6 +38,11 @@ public class ActivityMain extends BaseDrawerActivity implements ContainerRegiste
     }
 
     @Override
+    public void onShowRegister() {
+        ActivitiesNavigation.startActivityRegister(this);
+    }
+
+    @Override
     protected int getResourceLayout() {
         return R.layout.activity_navigation_main;
     }
