@@ -12,6 +12,7 @@
         <activity
             android:name=".ui.activity.ActivityMain"
             android:label="@string/title_activity_activity_main"
+            android:launchMode="singleInstance"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,8 +21,9 @@
         </activity>
         <activity
             android:name=".ui.activity.ActivityRegister"
+            android:label="@string/action_register"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
