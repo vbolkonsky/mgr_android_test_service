@@ -5,6 +5,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.mgrmobi.testservice.R;
+import com.mgrmobi.testservice.service.TestServiceImpl;
 import com.mgrmobi.testservice.ui.activity.base.BaseActivity;
 import com.mgrmobi.testservice.ui.activity.base.ContainerRegister;
 import com.mgrmobi.testservice.ui.fragment.FragmentsNavigation;
@@ -26,16 +27,22 @@ public class ActivityRegister extends BaseActivity implements ContainerRegister 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onBind(TestServiceImpl service) {
+        super.onBind(service);
         replaceFragment(FragmentsNavigation.makeFragment(FragmentsNavigation.FragmentCode.FRAGMENT_REGISTER, null));
     }
 
     @OnClick(R.id.btn_register)
-    protected void onRegisterPressed(){
+    protected void onRegisterPressed() {
         logger.debug("onRegisterPressed");
-        if(currentFragment != null){
+        if (currentFragment != null) {
             currentFragment.apply();
         }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

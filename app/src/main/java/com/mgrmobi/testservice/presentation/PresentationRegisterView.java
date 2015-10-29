@@ -24,6 +24,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import butterknife.Bind;
@@ -84,7 +85,8 @@ public class PresentationRegisterView extends AbstractPresentationView<Registrat
         model.setAddress(WidgetUtils.getStringFromView(txtAddress.getText()));
         model.setContact(WidgetUtils.getStringFromView(txtContact.getText()));
         model.setProductModel((ProductModel) spinnerProducts.getSelectedItem());
-        model.setPurchase(DateUtils.getDateFromString(application, WidgetUtils.getStringFromView(txtPurchase.getText()), R.string.date_template_simple));
+        model.setSerial(WidgetUtils.getStringFromView(txtSerial.getText()));
+        model.setPurchase((Date) txtPurchase.getTag()/*DateUtils.getDateFromString(application, WidgetUtils.getStringFromView(txtPurchase.getText()), R.string.date_template_simple)*/);
         logger.debug("apply model: " + model);
     }
 
@@ -124,8 +126,13 @@ public class PresentationRegisterView extends AbstractPresentationView<Registrat
         Dialog.Builder builder = new DatePickerDialog.Builder(R.style.Material_App_Dialog_DatePicker_Light) {
             @Override
             public void onPositiveActionClicked(DialogFragment fragment) {
-                DatePickerDialog dialog = (DatePickerDialog)fragment.getDialog();
-                txtPurchase.setText(DateUtils.getStringFromDate(application, new Date(dialog.getDate()), R.string.date_template_simple));
+                DatePickerDialog dialog = (DatePickerDialog) fragment.getDialog();
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.MONTH, dialog.getMonth());
+                calendar.set(Calendar.DAY_OF_MONTH, dialog.getDay());
+                calendar.set(Calendar.YEAR, dialog.getYear());
+                txtPurchase.setText(DateUtils.getStringFromDate(application, calendar.getTime(), R.string.date_template_simple));
+                txtPurchase.setTag(calendar.getTime());
                 super.onPositiveActionClicked(fragment);
                 dialog.dismiss();
             }
@@ -140,7 +147,7 @@ public class PresentationRegisterView extends AbstractPresentationView<Registrat
                 .negativeAction(application.getString(android.R.string.cancel));
 
         DialogFragment fragment = DialogFragment.newInstance(builder);
-        fragment.show(((AppCompatActivity)contentView.getContext()).getSupportFragmentManager(), null);
+        fragment.show(((AppCompatActivity) contentView.getContext()).getSupportFragmentManager(), null);
     }
 
     private void fillControls() {
@@ -148,7 +155,9 @@ public class PresentationRegisterView extends AbstractPresentationView<Registrat
         spinnerProducts.setAdapter(adapterProducts);
         adapterProducts.addAll(ProductModel.generateModels(application));
         txtSerial.setText(MiscUtils.getHardwareId());
-        txtPurchase.setText(DateUtils.getStringFromDate(application, new Date(), R.string.date_template_simple));
+        final Date currentDate = new Date();
+        txtPurchase.setText(DateUtils.getStringFromDate(application, currentDate, R.string.date_template_simple));
+        txtPurchase.setTag(currentDate);
     }
 
 }

@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.mgrmobi.testservice.R;
+import com.mgrmobi.testservice.service.TestService;
 import com.mgrmobi.testservice.ui.activity.base.BaseDrawerActivity;
 import com.mgrmobi.testservice.ui.activity.base.ContainerFake;
 import com.mgrmobi.testservice.ui.activity.base.ContainerRegister;
@@ -14,11 +15,12 @@ import com.mgrmobi.testservice.ui.fragment.FragmentsNavigation;
 
 import butterknife.OnClick;
 
-public class ActivityMain extends BaseDrawerActivity implements ContainerRegister, ContainerFake {
+public class ActivityMain extends BaseDrawerActivity implements
+        ContainerRegister,
+        ContainerFake {
 
     private FragmentsNavigation.FragmentCode pendingFragmentCode;
     private MenuItem currentMenu;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,11 @@ public class ActivityMain extends BaseDrawerActivity implements ContainerRegiste
         }
         Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
+    }
+
+    @Override
+    public TestService getService() {
+        return service;
     }
 
     @Override

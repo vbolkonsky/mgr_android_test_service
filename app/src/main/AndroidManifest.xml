@@ -24,6 +24,7 @@
             android:label="@string/action_register"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+        <service android:name=".service.TestServiceImpl"/>
     </application>
 
 </manifest>

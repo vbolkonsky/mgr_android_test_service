@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 
 import com.mgrmobi.testservice.application.TestServiceApplication;
+import com.mgrmobi.testservice.data.bean.PreferenceBean;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +27,9 @@ public abstract class DaggerFragment extends Fragment {
 
     @Inject
     protected LayoutInflater inflater;
+
+    @Inject
+    protected PreferenceBean preferenceBean;
 
     public DaggerFragment() {
         logger = LoggerFactory.getLogger(this.getClass());

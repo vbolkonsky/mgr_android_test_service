@@ -29,7 +29,7 @@ public class FragmentRegister extends BaseFragment<ContainerRegister> {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if(getView() != null) {
+        if (getView() != null) {
             presentationView = new PresentationRegisterView(getView());
         }
 
@@ -45,6 +45,7 @@ public class FragmentRegister extends BaseFragment<ContainerRegister> {
         logger.debug("apply pressed");
         if (presentationView.validation()) {
             presentationView.apply();
+            activity.getService().setPurchaseDateTime(((PresentationRegisterView) presentationView).getModel().getPurchase());
         }
     }
 }
