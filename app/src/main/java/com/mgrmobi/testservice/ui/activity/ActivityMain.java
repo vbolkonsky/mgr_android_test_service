@@ -7,7 +7,6 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.mgrmobi.testservice.R;
-import com.mgrmobi.testservice.service.TestService;
 import com.mgrmobi.testservice.ui.activity.base.BaseDrawerActivity;
 import com.mgrmobi.testservice.ui.activity.base.ContainerFake;
 import com.mgrmobi.testservice.ui.activity.base.ContainerRegister;
@@ -37,11 +36,6 @@ public class ActivityMain extends BaseDrawerActivity implements
         }
         Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
-    }
-
-    @Override
-    public TestService getService() {
-        return service;
     }
 
     @Override

@@ -21,8 +21,6 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 
 import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * @author Valentin S. Bolkonsky.
@@ -55,14 +53,13 @@ public class TestServiceImpl extends Service implements TestService {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        return START_STICKY;
+        return START_NOT_STICKY;
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
         TestServiceApplication.get(this).getComponent().inject(this);
-        subscribeToTimer();
     }
 
     @Override
@@ -72,9 +69,10 @@ public class TestServiceImpl extends Service implements TestService {
 
     @Override
     public void subscribeToTimer() {
+        if(subscription != null && !subscription.isUnsubscribed()){
+            return;
+        }
         subscription = rx.Observable.timer(0, 1000, TimeUnit.MILLISECONDS)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::checkTime);
     }
 
