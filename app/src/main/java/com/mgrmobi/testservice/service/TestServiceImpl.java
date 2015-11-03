@@ -68,6 +68,11 @@ public class TestServiceImpl extends Service implements TestService {
     }
 
     @Override
+    public boolean onUnbind(Intent intent) {
+        return true;
+    }
+
+    @Override
     public void subscribeToTimer() {
         if(subscription != null && !subscription.isUnsubscribed()){
             return;
@@ -85,8 +90,9 @@ public class TestServiceImpl extends Service implements TestService {
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
         unsubscribeFromTimer();
+        super.onDestroy();
+        logger.debug("service destroyed");
     }
 
     private void checkTime(long mills) {

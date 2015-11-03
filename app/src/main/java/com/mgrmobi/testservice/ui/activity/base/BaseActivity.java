@@ -55,7 +55,9 @@ public abstract class BaseActivity extends AppCompatActivity implements CommonAc
         super.onCreate(savedInstanceState);
         setContentView(getResourceLayout());
         ButterKnife.bind(this);
-        bindService(new Intent(this, TestServiceImpl.class),
+        final Intent serviceIntent = new Intent(this, TestServiceImpl.class);
+        startService(serviceIntent);
+        bindService(serviceIntent,
                 serviceConnection = new TestServiceConnection(this), BIND_AUTO_CREATE);
     }
 
@@ -79,10 +81,12 @@ public abstract class BaseActivity extends AppCompatActivity implements CommonAc
     protected void onDestroy() {
         super.onDestroy();
         ButterKnife.unbind(this);
-        //if need destroy service, pls uncomment that
         if (serviceConnection.isBound()) {
             unbindService(serviceConnection);
+            //if don't need destroy service
+            stopService(new Intent(this, TestServiceImpl.class));
         }
+
     }
 
     @Override
