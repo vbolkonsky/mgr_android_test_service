@@ -17,14 +17,17 @@ public class PresentationFakeView extends AbstractPresentationView<Void> {
     @Bind(R.id.txt_message)
     protected TextView txtMessage;
 
-    public PresentationFakeView(@NonNull View view, final String message) {
+    public PresentationFakeView(@NonNull View view) {
         super(view);
-        txtMessage.setText(message);
     }
 
     @Override
     public void apply() {
         logger.debug("not used here");
+    }
+
+    public void setMessage(final String message) {
+        txtMessage.setText(message);
     }
 
     @Override

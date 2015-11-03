@@ -115,6 +115,8 @@ public class PresentationRegisterView extends AbstractPresentationView<Registrat
                         txtEmail.setError(application.getString(R.string.error_email_required));
                     }
                     break;
+                default:
+                    break;
             }
         }
         return false;

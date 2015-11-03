@@ -32,7 +32,8 @@ public class FragmentFake extends BaseFragment<ContainerFake> {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (getView() != null) {
-            presentationView = new PresentationFakeView(getView(), getArguments().getString(FRAGMENT_ARG_MESSAGE));
+            presentationView = new PresentationFakeView(getView());
+            ((PresentationFakeView) presentationView).setMessage(getArguments().getString(FRAGMENT_ARG_MESSAGE));
         }
     }
 
